@@ -4,10 +4,11 @@
 $ go build
 
 # Running
+$ source .env
 $ ./stock_price_checker
 
 # Usage
-0.0.0.0:8000
+curl 0.0.0.0:8000
 
 ## task
 
