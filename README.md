@@ -1,5 +1,11 @@
 # stock price checker
 
+# Building
+$ go build
+
+# Running
+$ ./stock_price_checker
+
 ## task
 
 ```
