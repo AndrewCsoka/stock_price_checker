@@ -1,6 +1,8 @@
 # stock price checker
 
 # Building
+$ go get github.com/gorilla/mux
+$ go get github.com/savaki/jq
 $ go build
 
 # Running
