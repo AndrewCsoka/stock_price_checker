@@ -6,6 +6,9 @@ $ go build
 # Running
 $ ./stock_price_checker
 
+# Usage
+0.0.0.0:8000
+
 ## task
 
 ```
