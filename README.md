@@ -1,5 +1,15 @@
 # stock price checker
 
+# Building
+$ go build
+
+# Running
+$ source .env
+$ ./stock_price_checker
+
+# Usage
+curl 0.0.0.0:8000
+
 ## task
 
 ```
