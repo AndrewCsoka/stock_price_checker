@@ -16,7 +16,9 @@ $ ./stock_price_checker
 
 ## Dockerfile
 
-Note: currently produces an image thats 784MB... hah.
+Note: 
+- currently produces an image thats 784MB... hah.
+- tested on Ubuntu 18:04 & Docker version 18.09.2
 
 #### Building
 `docker build -t stock_price_checker:0.1 . -f Dockerfile`
