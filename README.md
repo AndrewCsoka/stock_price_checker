@@ -1,13 +1,21 @@
 # stock price checker
 
-# Building
+## Go Binary
+#### Building
 $ go get github.com/gorilla/mux
 $ go get github.com/savaki/jq
 $ go build
 
-# Running
+#### Running
 $ source .env
 $ ./stock_price_checker
+
+## Dockerfile
+#### Building
+`docker build -t stock_price_checker:0.1 . -f Dockerfile`
+
+#### Running
+`docker run -it -p 8000:8000 stock_price_checker:0.1`
 
 # Usage
 curl 0.0.0.0:8000
