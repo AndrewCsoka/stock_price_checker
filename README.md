@@ -2,13 +2,17 @@
 
 ## Go Binary
 #### Building
+```
 $ go get github.com/gorilla/mux
 $ go get github.com/savaki/jq
 $ go build
+```
 
 #### Running
+```
 $ source .env
 $ ./stock_price_checker
+```
 
 ## Dockerfile
 #### Building
@@ -18,7 +22,9 @@ $ ./stock_price_checker
 `docker run -it -p 8000:8000 stock_price_checker:0.1`
 
 # Usage
+```
 curl 0.0.0.0:8000
+```
 
 ## task
 
