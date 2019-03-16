@@ -15,6 +15,9 @@ $ ./stock_price_checker
 ```
 
 ## Dockerfile
+
+Note: currently produces an image thats 784MB... hah.
+
 #### Building
 `docker build -t stock_price_checker:0.1 . -f Dockerfile`
 
