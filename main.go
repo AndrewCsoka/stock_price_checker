@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -39,6 +40,7 @@ func GetStockPrice(w http.ResponseWriter, r *http.Request) {
 	op, _ := jq.Parse(".")
 	value, _ := op.Apply(bytes)
 	fmt.Println(string(value))
+	json.NewEncoder(w).Encode(string(value))
 
 }
 
