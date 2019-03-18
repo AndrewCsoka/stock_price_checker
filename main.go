@@ -2,9 +2,11 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 	"github.com/savaki/jq"
@@ -26,8 +28,15 @@ func main() {
 }
 
 func GetStockPrice(w http.ResponseWriter, r *http.Request) {
-	url := "https://www.alphavantage.co/query?apikey=C227WD9W3LUVKVV9&function=TIME_SERIES_DAILY_ADJUSTED&symbol=MSFT"
-	resp, _ := http.Get(url)
+	//url := "https://www.alphavantage.co/query?apikey=C227WD9W3LUVKVV9&function=TIME_SERIES_DAILY_ADJUSTED&symbol=MSFT"
+	fmt.Println("SYMBOL:", os.Getenv("SYMBOL"))
+	fmt.Println("NDAYS:", os.Getenv("NDAYS"))
+
+	symbol := os.Getenv("SYMBOL")
+	ndays := os.Getenv("NDAYS")
+
+	url := "https://www.alphavantage.co/query?apikey=%s&function=TIME_SERIES_DAILY_ADJUSTED&symbol=%s"
+	resp, _ := http.Get(fmt.Sprintf(url, symbol, ndays))
 	bytes, _ := ioutil.ReadAll(resp.Body)
 
 	//fmt.Println("HTML:\n\n", string(bytes))
