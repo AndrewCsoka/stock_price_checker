@@ -1,7 +1,7 @@
 # stock price checker
 
 Dear reviewer
-- I have not implemented NDAYS. The programme will always return the last 100 days of results.
+- I have not implemented NDAYS. The programme will always return the last 100 days of results. I began down the road and decided the time was better spent on other parts of the challenge, then ran out of time. Happy to discuss my approaches
 - The dockerfile/image works, but is sickeningly large at 784MB. There are some attempts at a much smaller image on branch `feature/smaller_dockerfile` but results in `standard_init_linux.go:178: exec user process caused "no such file or directory"`. The binary seems to exist in the expected place within the image but I haven't investigated further. The working image can be pulled from andycsoka/stock_price_checker:0.4
 - Deploying to MiniKube results in `404 - default backend` from the ingress when hitting the hostname:80
 
