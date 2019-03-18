@@ -1,0 +1,12 @@
+$ kubectl create -f configmap.yaml
+$ kubectl create -f secrets.yaml
+
+kubectl create -f service.yaml
+kubectl create -f ingress.yaml
+kubectl create -f deployment.yaml
+
+
+
+$ kubectl get secrets -n default
+$ kubectl get configmap -n default
+$ kubectl get svc

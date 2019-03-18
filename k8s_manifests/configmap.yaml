@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  symbol: "MSFT"
+  ndays: "7"
+kind: ConfigMap
+metadata:
+  name: app-config

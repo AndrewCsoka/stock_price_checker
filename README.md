@@ -1,5 +1,10 @@
 # stock price checker
 
+Dear reviewer
+- I have not implemented NDAYS. The programme will always return the last 100 days of results.
+- The dockerfile/image works, but is sickeningly large at 784MB. There are some attempts at a much smaller image on branch `feature/smaller_dockerfile` but results in `standard_init_linux.go:178: exec user process caused "no such file or directory"`. The binary seems to exist in the expected place within the image but I haven't investigated further. The working image can be pulled from andycsoka/stock_price_checker:0.4
+- Deploying to MiniKube results in `404 - default backend` from the ingress when hitting the hostname:80
+
 ## Go Binary
 #### Building
 ```
@@ -16,22 +21,57 @@ $ ./stock_price_checker
 
 ## Dockerfile
 
-Note: 
+Note:
 - currently produces an image thats 784MB... hah.
 - tested on Ubuntu 18:04 & Docker version 18.09.2
+- published to `andycsoka/stock_price_checker:0.4`
 
 #### Building
-`docker build -t stock_price_checker:0.1 . -f Dockerfile`
+`docker build -t stock_price_checker:0.4 . -f Dockerfile`
 
 #### Running
-`docker run -it -p 8000:8000 --env-file docker.env stock_price_checker:0.1`
+`docker run -it -p 8000:8000 --env-file docker.env stock_price_checker:0.4`
+
+## Kubernetes
+
+##### problem: curl hostname:80 gives default backend 404
+
+Note: for minikube you'll need
+- `minikube addons enable ingress`
+- `minikube ip` and update your hosts file to map the ingress' host
+
+```
+kubectl create -f k8s_manifests/configmap.yaml \
+  -f k8s_manifests/secrets.yaml
+  -f k8s_manifests/service.yaml
+  -f k8s_manifests/ingress.yaml
+  -f k8s_manifests/deployment.yaml
+```
 
 # Usage
+### go binary or docker:
 ```
 curl 0.0.0.0:8000
 ```
 
-## task
+### MiniKube:
+Assuming you've got minikube up and running with an ingress controller enabled and have deployed the manifests
+```
+minikube ip
+sudo echo "<minikube ip output> stockprice" >> /etc/hosts
+curl stockprice:80
+and witness it not working :(
+```
+
+
+# Pushing to docker hub (personal notes)
+```
+docker login --username=andycsoka --email=andrewcsoka@gmail.com
+docker tag 5250d83bc977 andycsoka/stock_price_checker:0.4
+docker push andycsoka/stock_price_checker
+```
+
+# task
 
 ```
 xxxxxxxxx DevOps Cloud Challenge
@@ -72,12 +112,4 @@ Use a secret to pass in the api key APIKEY=C227WD9W3LUVKVV9
 Publish your manifests, etc. to git (github, bitbucket, gitlab, etc) , and send us the link along with instructions on how to deploy it. The sample provided should run on a vanilla Kubernetes environment (minikube, for example).
 
 If you have any questions feel free to reach out to us for assistance. 
-```
-
-
-### personal notes
-```
-docker login --username=andycsoka --email=andrewcsoka@gmail.com
-docker tag 5250d83bc977 andycsoka/stock_price_checker:0.4
-docker push andycsoka/stock_price_checker
 ```

@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: stock-price-checker
+  labels:
+    app: stock-price-checker
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: stock-price-checker
+    spec:
+      containers:
+      - name: stock-price-checker
+        image: "andycsoka/stock_price_checker:0.4"
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8000
+        resources:
+          requests:
+           cpu: 10m
+           memory: 64Mi
+        env:
+          - name: SYMBOL
+            valueFrom:
+              configMapKeyRef:
+                key: symbol
+                name: app-config
+          - name: NDAYS
+            valueFrom:
+              configMapKeyRef:
+                key: ndays
+                name: app-config
+          - name: APIKEY
+            valueFrom:
+              secretKeyRef:
+                key: apiKey
+                name: app-secrets

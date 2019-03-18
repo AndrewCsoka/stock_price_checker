@@ -1,0 +1,8 @@
+apiKey: "C227WD9W3LUVKVV9"
+symbol: "MSFT"
+ndays: "7"
+replicas: "1"
+httpPort: "80"
+serverPort: "8000"
+imageRepo: "andycsoka/stock_price_checker"
+imageTag: "0.4"
