@@ -24,7 +24,7 @@ Note:
 `docker build -t stock_price_checker:0.1 . -f Dockerfile`
 
 #### Running
-`docker run -it -p 8000:8000 stock_price_checker:0.1`
+`docker run -it -p 8000:8000 --env-file docker.env stock_price_checker:0.1`
 
 # Usage
 ```
