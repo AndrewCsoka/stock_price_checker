@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: stock-price-checker-ingress
+  labels:
+    app: stock-price-checker
+#anc fixme do i need annotations?
+spec:
+  rules:
+  - host: {{ .Values.domain }} #anc fixme how's this gonna work? hostsfile for testing?
+    http:
+      paths:
+      - path: /*
+        backend:
+          servicePort: 80
