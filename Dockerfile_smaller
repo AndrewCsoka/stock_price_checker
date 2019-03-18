@@ -1,0 +1,15 @@
+FROM golang:1.12 as builder
+RUN mkdir /build
+ADD . /build/
+WORKDIR /build
+RUN go get github.com/gorilla/mux
+RUN go get github.com/savaki/jq
+RUN go build -o main .
+RUN ls -asl /build/
+FROM alpine
+#RUN adduser -S -D -H -h /app appuser
+#USER appuser
+COPY --from=builder /build/main /app/
+WORKDIR /app
+RUN ls -asl /app/
+CMD ["./main"]

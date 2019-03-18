@@ -19,6 +19,7 @@ $ ./stock_price_checker
 Note: 
 - currently produces an image thats 784MB... hah.
 - tested on Ubuntu 18:04 & Docker version 18.09.2
+- Dockerfile_smaller produces a smaller image but results in `standard_init_linux.go:178: exec user process caused "no such file or directory"`
 
 #### Building
 `docker build -t stock_price_checker:0.1 . -f Dockerfile`
