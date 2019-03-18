@@ -19,6 +19,11 @@ $ source .env
 $ ./stock_price_checker
 ```
 
+#### Using
+```
+curl 0.0.0.0:8000
+```
+
 ## Dockerfile
 
 Note:
@@ -32,6 +37,11 @@ Note:
 #### Running
 `docker run -it -p 8000:8000 --env-file docker.env stock_price_checker:0.4`
 
+#### Using
+```
+curl 0.0.0.0:8000
+```
+
 ## Kubernetes
 
 ##### problem: curl hostname:80 gives default backend 404
@@ -40,6 +50,7 @@ Note: for minikube you'll need
 - `minikube addons enable ingress`
 - `minikube ip` and update your hosts file to map the ingress' host
 
+#### Building
 ```
 kubectl create -f k8s_manifests/configmap.yaml \
   -f k8s_manifests/secrets.yaml
@@ -48,13 +59,7 @@ kubectl create -f k8s_manifests/configmap.yaml \
   -f k8s_manifests/deployment.yaml
 ```
 
-# Usage
-### go binary or docker:
-```
-curl 0.0.0.0:8000
-```
-
-### MiniKube:
+#### Using
 Assuming you've got minikube up and running with an ingress controller enabled and have deployed the manifests
 ```
 minikube ip
@@ -62,7 +67,6 @@ sudo echo "<minikube ip output> stockprice" >> /etc/hosts
 curl stockprice:80
 and witness it not working :(
 ```
-
 
 # Pushing to docker hub (personal notes)
 ```
