@@ -1,0 +1,65 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: stock-price-checker
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: stock-price-checker
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: stock-price-checker
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.imageRepo }}:{{ .Values.imageTag }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+             cpu: 10m
+             memory: 64Mi
+        - name: SYMBOL
+          valueFrom:
+            configMapKeyRef:
+              key: symbol
+              name: app-config
+        - name: NDAYS
+          valueFrom:
+            configMapKeyRef:
+              key: ndays
+              name: app-config
+        - name: APIKEY
+          valueFrom:
+            secretKeyRef:
+              key: apiKey
+              name: app-secrets
+
+
+
+             #anc fixme make a note this could be added
+             #          livenessProbe:
+             #            httpGet:
+             #              path: /health
+             #              port: 80
+             #            periodSeconds: 1
+             #            timeoutSeconds: 1
+             #            successThreshold: 1
+             #            failureThreshold: 10
+             #            initialDelaySeconds: 60
+             #          readinessProbe:
+             #            httpGet:
+             #              path: /health
+             #              port: 80
+             #            periodSeconds: 1
+             #            timeoutSeconds: 1
+             #            successThreshold: 1
+             #            failureThreshold: 10
+             #            initialDelaySeconds: 60

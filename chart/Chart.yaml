@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Deployment of the stock price checker challenge
+name: stock-price-checker
+version: 0.1.0
