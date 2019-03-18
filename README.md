@@ -73,3 +73,11 @@ Publish your manifests, etc. to git (github, bitbucket, gitlab, etc) , and send 
 
 If you have any questions feel free to reach out to us for assistance. 
 ```
+
+
+### personal notes
+```
+docker login --username=andycsoka --email=andrewcsoka@gmail.com
+docker tag 5250d83bc977 andycsoka/stock_price_checker:0.4
+docker push andycsoka/stock_price_checker
+```
