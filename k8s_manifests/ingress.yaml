@@ -13,3 +13,4 @@ spec:
       - path: /*
         backend:
           servicePort: 80
+          serviceName: stock-price-checker-service
