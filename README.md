@@ -26,6 +26,13 @@ Note:
 #### Running
 `docker run -it -p 8000:8000 --env-file docker.env stock_price_checker:0.1`
 
+## Helm
+
+```
+helm install --debug --dry-run . --name stock_price_checker --namespace stock_price_checker
+helm install . --name stock_price_checker --namespace stock_price_checker
+```
+
 # Usage
 ```
 curl 0.0.0.0:8000
@@ -80,4 +87,7 @@ If you have any questions feel free to reach out to us for assistance.
 docker login --username=andycsoka --email=andrewcsoka@gmail.com
 docker tag 5250d83bc977 andycsoka/stock_price_checker:0.4
 docker push andycsoka/stock_price_checker
+
+
+minikube addons enable ingress
 ```
