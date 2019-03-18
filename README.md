@@ -90,4 +90,7 @@ docker push andycsoka/stock_price_checker
 
 
 minikube addons enable ingress
+$ minikube ip
+192.168.99.100
+update hosts file 
 ```

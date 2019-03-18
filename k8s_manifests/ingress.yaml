@@ -7,7 +7,7 @@ metadata:
 #anc fixme do i need annotations?
 spec:
   rules:
-  - host: {{ .Values.domain }} #anc fixme how's this gonna work? hostsfile for testing?
+  - host: stockprice #minikube ip and add to hosts
     http:
       paths:
       - path: /*
