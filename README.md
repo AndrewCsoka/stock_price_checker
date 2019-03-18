@@ -24,7 +24,7 @@ Note:
 `docker build -t stock_price_checker:0.1 . -f Dockerfile`
 
 #### Running
-`docker run -it -p 8000:8000 stock_price_checker:0.1`
+`docker run -it -p 8000:8000 --env-file docker.env stock_price_checker:0.1`
 
 # Usage
 ```
@@ -72,4 +72,12 @@ Use a secret to pass in the api key APIKEY=C227WD9W3LUVKVV9
 Publish your manifests, etc. to git (github, bitbucket, gitlab, etc) , and send us the link along with instructions on how to deploy it. The sample provided should run on a vanilla Kubernetes environment (minikube, for example).
 
 If you have any questions feel free to reach out to us for assistance. 
+```
+
+
+### personal notes
+```
+docker login --username=andycsoka --email=andrewcsoka@gmail.com
+docker tag 5250d83bc977 andycsoka/stock_price_checker:0.4
+docker push andycsoka/stock_price_checker
 ```
