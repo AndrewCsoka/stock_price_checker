@@ -41,25 +41,3 @@ spec:
             secretKeyRef:
               key: apiKey
               name: app-secrets
-
-
-
-             #anc fixme make a note this could be added
-             #          livenessProbe:
-             #            httpGet:
-             #              path: /health
-             #              port: 80
-             #            periodSeconds: 1
-             #            timeoutSeconds: 1
-             #            successThreshold: 1
-             #            failureThreshold: 10
-             #            initialDelaySeconds: 60
-             #          readinessProbe:
-             #            httpGet:
-             #              path: /health
-             #              port: 80
-             #            periodSeconds: 1
-             #            timeoutSeconds: 1
-             #            successThreshold: 1
-             #            failureThreshold: 10
-             #            initialDelaySeconds: 60
