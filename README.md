@@ -1,7 +1,8 @@
 # stock price checker
 
 Dear reviewer
-- I have not implemented NDAYS. The programme will always return the last 100 days of results. I began down the road and decided the time was better spent on other parts of the challenge, then ran out of time. Happy to discuss my approaches
+- I'm hoping to spend a bit more time fixing the issues mentioned below. I'll update the repo as I go.
+- I have not implemented NDAYS. The programme will always return the last 100 days of results. I began down the road and decided the time was better spent on other parts of the challenge, then ran out of time.
 - The dockerfile/image works, but is sickeningly large at 784MB. There are some attempts at a much smaller image on branch `feature/smaller_dockerfile` but results in `standard_init_linux.go:178: exec user process caused "no such file or directory"`. The binary seems to exist in the expected place within the image but I haven't investigated further. The working image can be pulled from andycsoka/stock_price_checker:0.4
 - Deploying to MiniKube results in `404 - default backend` from the ingress when hitting the hostname:80
 
@@ -78,10 +79,7 @@ docker push andycsoka/stock_price_checker
 # task
 
 ```
-xxxxxxxxx DevOps Cloud Challenge
-
-This is a simple exercise that should take you no more than 3-4 hours to complete. This is intended to be fun. If you enjoy this exercise, you will like the Cloud Engineering role at xxxxxxxxx. 
-
+Challenge
 
 Write a web service that looks up the closing price of a stock. You can use any language you like (slight preference for Go, python, Java, etc. - but if you are more comfortable in another language that is fine). 
 
