@@ -4,7 +4,8 @@ Dear reviewer
 - I'm hoping to spend a bit more time fixing the issues mentioned below. I'll update the repo as I go.
 - I have not implemented NDAYS. The programme will always return the last 100 days of results. I began down the road and decided the time was better spent on other parts of the challenge, then ran out of time.
 - The dockerfile/image works, but is sickeningly large at 784MB. There are some attempts at a much smaller image on branch `feature/smaller_dockerfile` but results in `standard_init_linux.go:178: exec user process caused "no such file or directory"`. The binary seems to exist in the expected place within the image but I haven't investigated further. The working image can be pulled from andycsoka/stock_price_checker:0.4
-- Deploying to MiniKube results in `404 - default backend` from the ingress when hitting the hostname:80
+- FIXED: Deploying to MiniKube results in `404 - default backend` from the ingress when hitting the hostname:80
+  - My APIKEYS secret wasn't base64 encoded. Hitting the endpoint then checking the pod logs reminded me.
 
 ## Go Binary
 #### Building
@@ -45,8 +46,6 @@ curl 0.0.0.0:8000
 
 ## Kubernetes
 
-##### problem: curl hostname:80 gives default backend 404
-
 Note: for minikube you'll need
 - `minikube addons enable ingress`
 - `minikube ip` and update your hosts file to map the ingress' host
@@ -56,17 +55,15 @@ Note: for minikube you'll need
 kubectl create -f k8s_manifests/configmap.yaml \
   -f k8s_manifests/secrets.yaml
   -f k8s_manifests/service.yaml
-  -f k8s_manifests/ingress.yaml
   -f k8s_manifests/deployment.yaml
+  -f k8s_manifests/ingress.yaml
 ```
 
 #### Using
 Assuming you've got minikube up and running with an ingress controller enabled and have deployed the manifests
 ```
-minikube ip
-sudo echo "<minikube ip output> stockprice" >> /etc/hosts
-curl stockprice:80
-and witness it not working :(
+echo "$(minikube ip) stockprice" >> /etc/hosts
+curl stockprice
 ```
 
 # Pushing to docker hub (personal notes)
