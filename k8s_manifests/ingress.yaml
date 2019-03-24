@@ -4,7 +4,9 @@ metadata:
   name: stock-price-checker-ingress
   labels:
     app: stock-price-checker
-#anc fixme do i need annotations?
+## don't appear to need the following annotation. why?
+#  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: stockprice #minikube ip and add to hosts
