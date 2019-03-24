@@ -1,15 +1,11 @@
-FROM golang:1.12 as builder
-RUN mkdir /build
-ADD . /build/
-WORKDIR /build
-RUN go get github.com/gorilla/mux
-RUN go get github.com/savaki/jq
-RUN go build -o main .
-RUN ls -asl /build/
+FROM golang:alpine AS build-env
+RUN apk update && apk add --no-cache git
+ADD . /app
+RUN cd /app 
+RUN go get -d -v
+RUN go build -o main
+
 FROM alpine
-#RUN adduser -S -D -H -h /app appuser
-#USER appuser
-COPY --from=builder /build/main /app/
 WORKDIR /app
-RUN ls -asl /app/
-CMD ["./main"]
+COPY --from=build-env /app/main /app/
+ENTRYPOINT ./main
